@@ -41,6 +41,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref }}
+          allowUpdates : true
           body: |
             Changes in this Release
             - First Change
