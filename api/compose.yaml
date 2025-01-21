@@ -1,6 +1,6 @@
 services:
   api:
-    image: juanpospina128/actions-web:latest
+    image: juanpospina128/actions-web
     build:
       context: .
       target: runner
