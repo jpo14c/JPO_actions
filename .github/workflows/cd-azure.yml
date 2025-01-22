@@ -22,19 +22,22 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
       - run: ./build-push.sh # can reuse local build scripts for CI/CD
         working-directory: api
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: production
-  #     url: ${{ steps.deploy.outputs.webapp-url }}
-  #   needs: build
-  #   steps:
-  #     - uses: azure/login@v2
-  #       with:
-  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
-  #     - uses: azure/webapps-deploy@v3
-  #       id: deploy
-  #       with:
-  #         app-name: gh-actions-web-api
-  #         images: juanpospina128/actions-web:latest
-  #         resource-group-name: gh-actions
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.webapp-url }}
+    needs: build
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+          enable-AzPSSession: true
+      - uses: azure/webapps-deploy@v3
+        id: deploy
+        with:
+          app-name: gh-actions-web-api
+          images: juanpospina128/actions-web:latest
+          resource-group-name: gh-actions
