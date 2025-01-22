@@ -31,9 +31,11 @@ jobs:
       # url: ${{ steps.deploy.outputs.webapp-url }}
     # needs: build
     steps:
-      - uses: azure/login@v2
+      - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - run: |
+          az webapp list --query "[?state=='Running']"
       # - uses: azure/webapps-deploy@v3
       #   id: deploy
       #   with:
