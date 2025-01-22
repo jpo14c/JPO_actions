@@ -6,7 +6,9 @@ on:
      # - ".github/workflows/cd-azure.yml"
       - "api/**"
   workflow_dispatch: # manual
-
+permissions:
+  id-token: write
+  contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
