@@ -10,4 +10,7 @@ jobs:
       - name: Hello world
         run: 
           write-output "Hello World"
-       
+      - name: Display the environment variables and their values
+        run: 
+          print %ENV
+        shell: perl {0}
