@@ -13,4 +13,4 @@ jobs:
       - name: Display the environment variables and their values
         run: 
           print %ENV
-        shell: perl {0}
+        #shell: perl {0}
