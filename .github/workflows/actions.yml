@@ -1,0 +1,13 @@
+name: "Test"
+
+on:  
+  workflow_dispatch: # manual
+
+jobs:
+  name-of-job:
+    runs-on: windows-latest
+    steps:
+      - name: Hello world
+        run: 
+          write-output "Hello World"
+       
